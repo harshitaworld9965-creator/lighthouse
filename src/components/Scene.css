@@ -1,0 +1,150 @@
+.scene {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    background: linear-gradient(to bottom, var(--sky-top) 0%, var(--sky-bottom) 70%);
+}
+
+.scene__sky {
+    position: absolute;
+    inset: 0;
+}
+
+.star {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: var(--ink);
+    opacity: 0.7;
+    animation: twinkle 4s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+@keyframes twinkle{
+    0%, 100% {opacity: 0.25; transform: scale(0.8);}
+    50% {opacity: 0.9; transform: scale(1.2);}
+}
+
+.moon {
+    position: absolute;
+    top: 12%;
+    right: 14%;
+    width: clamp(48px, 7vw, 110px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fbf8ef, #d9d3c2 60%, #b8b2a2);
+    box-shadow: 0 0 60px 20px rgba(251, 248, 239, 0.08);
+}
+
+.scene__sea {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 32%;
+    background: linear-gradient(to bottom, #0a1020, var(--sea));
+}
+
+.wave {
+    position: absolute;
+    left: -10%;
+    right: -10%;
+    height: 40px;
+    background: 
+    radial-gradient(ellipse 60px 14px at 50% 100%, rgba(232, 228, 218, 0.07) 0, transparent 70%)
+    0 0 / 120px 40px repeat-x
+    ;
+}
+
+.wave--back {top: 0; opacity: 0.6;}
+.wave--front {top: 28px; background-size: 160px 40px;}
+
+.scene__rock {
+    position: absolute;
+    left: 50%;
+    bottom: 22%;
+    width: clamp(220px, 34vw, 520px);
+    height: clamp(60px, 8vw, 120px);
+    transform: translateX(-50%);
+    background: var(--rock);
+    border-radius: 50% 50% 10% 10% / 100% 100% 10% 10%;
+    box-shadow: inset 0 14px 30px rgba(0,0,0,0.5);
+}
+
+.tower {
+    position: absolute;
+    left: 50%;
+    bottom: 26%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    --tower-w: clamp(44px, 6vw, 92px);
+}
+
+.tower__base {
+    width: calc(var(--tower-w) * 1.4);
+    height: 14px;
+    background: var(--rock);
+    border-radius: 4px 4px 0 0;
+}
+
+.tower__body {
+    width: var(--tower-w);
+    height: clamp(180px, 28vh, 320px);
+    background: 
+    repeating-linear-gradient(
+        to bottom,
+        #e9e2d3 0 18%,
+        #a93c3a 18% 36%
+    );
+    clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
+}
+
+.tower__lantern {
+    position: relative;
+    width: calc(var(--tower-w) * 0.85);
+    height: calc(var(--tower-w) * 0.7);
+    background: #1a1d26;
+    border: 2px solid #3b4050;
+    border-bottom: 0;
+    border-radius: 6px 6px 0 0 ;
+}
+
+.tower__lamp {
+    position: absolute;
+    inset: 25%;
+    border-radius: 50%;
+    background: var(--lamp-hot);
+    box-shadow: 
+    0 0 10px var(--lamp)
+    0 0 40px var(--lamp)
+    0 0 90px rgba(255, 217, 138, 0.35);
+    opacity: 0;
+}
+
+.tower__beam {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 140vmax;
+    height: 140vmax;
+    translate: -50% -50%;
+    background: conic-gradient(
+        from 0deg,
+        rgba(255, 217, 138, 0.22) 0deg,
+        rgba(255, 217, 138, 0.06) 6deg,
+        transparent 14deg,
+        transparent 180deg,
+        rgba(255, 217, 138, 0.22) 180deg,
+        rgba(255, 217, 138, 0.06) 186deg,
+        transparent 194deg
+    );
+    mix-blend-mode: screen;
+    pointer-events: none;
+    opacity: 0;
+}

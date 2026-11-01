@@ -1,3 +1,5 @@
+import "./Scene.css";
+
 export default function Scene() {
     const stars = Array.from({length:80}, (_, i) => ({
         id: i,
